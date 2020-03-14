@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/ca55c8fde4.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="animate.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="./assets/favicon.ico">
+    <title>Sign Up</title>
+</head>
+<body>
+    <section id="login">
+        <div class="leftDiv">
+            <h2>
+                <i class="fas fa-capsules"></i>
+                Findingz
+            </h2>
+            <div class="imgSignUp">
+                
+            </div>
+        </div>
+        <div class="rightDiv">
+           <h2>
+               Create Account <span>:)</span>
+           </h2>
+           <form action="#" onsubmit="required()">
+            <div class="form">
+                <div class="inputBase" id="UsernameGroup">
+                    <span>
+                    <i class="far fa-envelope"></i></span>
+                    <input type="text" name="Username" id="Username" autocomplete="off" placeholder="xyz@abc.com"/>
+                </div>
+                <small id="usernameError"></small>
+                <div class="inputBase" id="PasswordGroup">
+                        <span>
+                        <i class="fas fa-unlock-alt"></i></span>
+                        <input type="password" name="Password" id="Password" autocomplete="off" placeholder="Password"/>
+                </div>
+                <small id="passwordError"></small>
+                <div class="inputBase" id="ConPassGroup">
+                    <span>
+                    <i class="fas fa-unlock-alt"></i></span>
+                    <input type="password" name="ConfirmPassword" id="ConfirmPassword" autocomplete="off" placeholder="Confirm Password"/>
+                </div>
+                <small id="conpassError"></small>
+                <div class="pretty p-default p-curve p-thick extra">
+                    <input type="checkbox" />
+                    <div class="state p-info-o">
+                        <label>I accept the terms & conditions.</label>
+                    </div>
+             </div>
+                    <input type="submit" id="btnCheck" value="Sign Up"/>
+            </div>
+            </form>
+        </div>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script>
+         function testUsername(x) {
+            $('#UsernameGroup').removeClass(x).addClass(x + ' animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+            $(this).removeClass(x);
+            });
+        };
+
+        function testPassword(x) {
+            $('#PasswordGroup').removeClass(x).addClass(x + ' animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+            $(this).removeClass(x);
+            });
+        };
+
+        function testConPassword(x) {
+            $('#ConPassGroup').removeClass(x).addClass(x + ' animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+            $(this).removeClass(x);
+            });
+        };
+
+        $(document).ready(function(){
+            $('#btnCheck').click(function(e){
+            e.preventDefault();
+            var anim = 'shake';
+            var txtUsername = $('#Username');  
+            var txtPassword=$('#Password');
+            var txtConPassword=$('#ConfirmPassword');
+            var usernameError=document.getElementById('usernameError');
+            var passwordError=document.getElementById('passwordError');
+            var conpasswordError=document.getElementById('conpassError');
+            if (txtUsername.val() == '' && txtPassword.val()=='' && txtConPassword.val()==''){
+                testUsername(anim);
+                testPassword(anim);
+                testConPassword(anim);
+                usernameError.innerText='Username cannot be blank';
+                usernameError.style.visibility='Visible';
+                passwordError.innerText='Password cannot be blank';
+                passwordError.style.visibility='Visible';
+                conpasswordError.innerText='Confirm Password cannot be blank';
+                conpasswordError.style.visibility='Visible';
+            }
+            else if(txtPassword.val()=='' && txtConPassword.val()==''){
+                testPassword(anim);
+                testConPassword(anim);
+                usernameError.innerText='';
+                usernameError.style.visibility='hidden';
+                passwordError.innerText='Password cannot be blank';
+                passwordError.style.visibility='Visible';
+                conpasswordError.innerText='Confirm Password cannot be blank';
+                conpasswordError.style.visibility='Visible';
+            }
+
+            else if(txtUsername.val()=='' && txtConPassword.val()==''){
+                testUsername(anim);
+                testConPassword(anim);
+                usernameError.innerText='Username cannot be blank';
+                usernameError.style.visibility='visible';
+                passwordError.innerText='';
+                passwordError.style.visibility='hidden';
+                conpasswordError.innerText='Confirm Password cannot be blank';
+                conpasswordError.style.visibility='Visible';
+            }
+
+
+            else if(txtUsername.val()==''){
+                testUsername(anim);
+                usernameError.innerText='Username cannot be blank';
+                usernameError.style.visibility='Visible';
+                passwordError.innerText='';
+                passwordError.style.visibility='hidden';
+                conpasswordError.innerText='';
+                conpasswordError.style.visibility='hidden';
+
+            }
+            else if(txtPassword.val()=='')
+            {
+                testPassword(anim);
+                usernameError.innerText='';
+                usernameError.style.visibility='hidden';
+                passwordError.innerText='Password cannot be blank';
+                passwordError.style.visibility='Visible';
+                conpasswordError.innerText='';
+                conpasswordError.style.visibility='hidden';
+            }
+            else if(txtConPassword.val()=='')
+            {
+                testConPassword(anim);
+                usernameError.innerText='';
+                usernameError.style.visibility='hidden';
+                passwordError.innerText='';
+                passwordError.style.visibility='hidden';
+                conpasswordError.innerText='Confirm Password cannot be blank';
+                conpasswordError.style.visibility='Visible';
+            }
+            else if(txtConPassword.val()!=txtPassword.val()){
+                testConPassword(anim);
+                conpasswordError.innerText='Password should be same as above';
+                conpasswordError.style.visibility='Visible';
+            }
+            else if(txtUsername.val() != '' && txtPassword.val()!='' && txtConPassword.val()!=''){
+                usernameError.innerText='';
+                usernameError.style.visibility='hidden';
+                passwordError.innerText='';
+                passwordError.style.visibility='hidden';
+                conpasswordError.innerText='';
+                conpasswordError.style.visibility='hidden';
+            }
+            else{
+
+            }
+            });
+        });
+
+    </script>
+</body>
+</html>

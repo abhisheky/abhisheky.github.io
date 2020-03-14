@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/ca55c8fde4.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="animate.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="./assets/favicon.ico">
+    <title>Session Locked</title>
+</head>
+<body>
+    <section id="login">
+        <div class="leftDiv">
+            <h2>
+                <i class="fas fa-capsules"></i>
+                Findingz
+            </h2>
+            <div class="imglockScreen">
+                
+            </div>
+        </div>
+        <div class="rightDiv">
+           <h2>
+               Session Locked <span>:)</span>
+           </h2>
+           <p>Please enter your usual password to unlock your session.</p>
+           <form action="#" onsubmit="required()">
+            <div class="form">
+                <div class="inputBase" id='PasswordGroup'>
+                    <span>
+                    <i class="fas fa-unlock-alt"></i></span>
+                    <input type="password" name="password" id="Password" autocomplete="off" placeholder="Password"/>
+                </div>
+                <small id="passwordError"></small>
+                <a href="./forgotpassword.html" class="forgotPass">Are you not John ?</a>
+                    <input type="submit" id="btnCheck" value="Unlock Session"/>
+            </div>
+            </form>
+        </div>
+    </section>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script>
+         function testUsername(x) {
+            $('#PasswordGroup').removeClass(x).addClass(x + ' animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+            $(this).removeClass(x);
+            });
+        };
+        $(document).ready(function(){
+            $('#btnCheck').click(function(e){
+            e.preventDefault();
+            var anim = 'shake';
+            var txtPassword = $('#Password');  
+            var passwordError=document.getElementById('passwordError');
+            if (txtPassword.val() == ''){
+                testUsername(anim);
+                passwordError.innerText='Password cannot be blank';
+                passwordError.style.visibility='Visible';
+            }
+            else{
+                passwordError.innerText='';
+                passwordError.style.visibility='hidden';
+            }
+            });
+        });
+
+    </script>
+</body>
+</html>
